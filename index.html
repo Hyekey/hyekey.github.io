@@ -3,48 +3,263 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hyekey | Gamer & GeoGuessr Player</title>
-  <link rel="stylesheet" href="style.css" />
+  <title>Hyekey | GeoGuessr Creator</title>
+
+  <!-- =====================
+       BLACK & WHITE THEME
+       ===================== -->
+  <style>
+    :root {
+      --bg: #000;
+      --fg: #fff;
+      --muted: #bdbdbd;
+      --accent: #fff; /* still white – sakura is shape, not color */
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Inter", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--fg);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: var(--fg);
+      text-decoration: none;
+      border-bottom: 1px solid transparent;
+      transition: border 0.3s ease, opacity 0.3s ease;
+    }
+
+    a:hover {
+      border-bottom: 1px solid var(--fg);
+      opacity: 0.8;
+    }
+
+    /* =====================
+       CHERRY BLOSSOM ANIMATION
+       (BLACK & WHITE)
+       ===================== */
+    .sakura {
+      position: fixed;
+      top: -10vh;
+      width: 8px;
+      height: 8px;
+      background: white;
+      border-radius: 50% 50% 50% 0;
+      transform: rotate(45deg);
+      opacity: 0.8;
+      animation: fall linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translateY(-10vh) rotate(45deg);
+      }
+      100% {
+        transform: translateY(110vh) rotate(405deg);
+      }
+    }
+
+    /* =====================
+       LAYOUT
+       ===================== */
+    header {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+      padding: 2rem;
+    }
+
+    header h1 {
+      font-size: clamp(3rem, 6vw, 5rem);
+      letter-spacing: 0.15em;
+      margin-bottom: 1rem;
+    }
+
+    header p {
+      color: var(--muted);
+      max-width: 600px;
+    }
+
+    section {
+      padding: 6rem 10vw;
+      position: relative;
+      z-index: 1;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* =====================
+       ABOUT
+       ===================== */
+    .about p {
+      max-width: 700px;
+      color: var(--muted);
+    }
+
+    /* =====================
+       VIDEOS
+       ===================== */
+    .videos {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 2rem;
+    }
+
+    .video-card {
+      border: 1px solid var(--fg);
+      padding: 1.5rem;
+      transition: transform 0.3s ease, background 0.3s ease;
+    }
+
+    .video-card:hover {
+      transform: translateY(-6px);
+      background: #111;
+    }
+
+    .video-card h3 {
+      margin-bottom: 0.5rem;
+    }
+
+    .video-card p {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* =====================
+       LINKS
+       ===================== */
+    .links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+    }
+
+    .links a {
+      font-size: 1.2rem;
+      letter-spacing: 0.1em;
+    }
+
+    /* =====================
+       FOOTER
+       ===================== */
+    footer {
+      padding: 3rem;
+      text-align: center;
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-top: 1px solid #222;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* =====================
+       RESPONSIVE
+       ===================== */
+    @media (max-width: 768px) {
+      section {
+        padding: 4rem 2rem;
+      }
+    }
+  </style>
 </head>
 <body>
 
-  <header class="hero">
-    <h1>Hyekey</h1>
-    <p class="tagline">Gamer • YouTuber • GeoGuessr Explorer</p>
+  <!-- =====================
+       SAKURA PETALS (JS GENERATED)
+       ===================== -->
+  <script>
+    const petalCount = 30;
+    for (let i = 0; i < petalCount; i++) {
+      const petal = document.createElement("div");
+      petal.className = "sakura";
+      petal.style.left = Math.random() * 100 + "vw";
+      petal.style.animationDuration = 5 + Math.random() * 10 + "s";
+      petal.style.opacity = Math.random();
+      petal.style.transform = `scale(${0.5 + Math.random()}) rotate(45deg)`;
+      document.body.appendChild(petal);
+    }
+  </script>
+
+  <!-- =====================
+       HERO
+       ===================== -->
+  <header>
+    <h1>HYEKEY</h1>
+    <p>
+      GeoGuessr player • YouTuber • Explorer of digital geography
+    </p>
   </header>
 
+  <!-- =====================
+       ABOUT
+       ===================== -->
   <section class="about">
-    <h2>About Me</h2>
+    <h2>ABOUT</h2>
     <p>
-      Hey, I’m <strong>Hyekey</strong> 👋  
-      I love gaming, exploring the world through GeoGuessr, and creating content.
-      This site is my personal corner on the internet.
+      I create GeoGuessr content focused on map knowledge, pattern recognition,
+      and calm, focused gameplay. This site is my minimal, distraction‑free hub
+      for everything I make.
     </p>
   </section>
 
-  <section class="skills">
-    <h2>What I Do</h2>
-    <div class="cards">
-      <div class="card">🎮 Competitive Gaming</div>
-      <div class="card">🌍 GeoGuessr Player</div>
-      <div class="card">📺 Content Creation</div>
-      <div class="card">💻 Tech & AI Enthusiast</div>
+  <!-- =====================
+       VIDEOS
+       ===================== -->
+  <section>
+    <h2>FEATURED VIDEOS</h2>
+    <div class="videos">
+      <div class="video-card">
+        <h3>GeoGuessr Challenge Runs</h3>
+        <p>High‑focus competitive gameplay and map analysis.</p>
+      </div>
+      <div class="video-card">
+        <h3>Learning Geography</h3>
+        <p>Road lines, poles, signs, and region deduction.</p>
+      </div>
+      <div class="video-card">
+        <h3>Calm Sessions</h3>
+        <p>Relaxed, no‑commentary exploration gameplay.</p>
+      </div>
     </div>
   </section>
 
-  <section class="links">
-    <h2>Find Me Online</h2>
-    <div class="buttons">
-      <a href="https://github.com/Hyekey" target="_blank">GitHub</a>
-      <a href="#" target="_blank">YouTube</a>
-      <a href="#" target="_blank">Bluesky</a>
+  <!-- =====================
+       LINKS
+       ===================== -->
+  <section>
+    <h2>CONNECT</h2>
+    <div class="links">
+      <a href="https://www.youtube.com/@hyekey" target="_blank">YOUTUBE</a>
+      <a href="https://bsky.app" target="_blank">BLUESKY</a>
+      <a href="https://github.com/Hyekey" target="_blank">GITHUB</a>
     </div>
   </section>
 
+  <!-- =====================
+       FOOTER
+       ===================== -->
   <footer>
-    <p>© 2026 Hyekey • Built with❤️ & GitHub Pages</p>
+    © 2026 Hyekey · Black & White Sakura Theme
   </footer>
 
 </body>
 </html>
-
