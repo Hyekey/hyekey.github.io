@@ -5,17 +5,30 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Hyekey | GeoGuessr Creator</title>
 
-  <!-- =====================
-       BLACK & WHITE THEME
-       ===================== -->
+  <!-- =========================
+       GOOGLE FONT (FUTURISTIC / CLEAN)
+       ========================= -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600&display=swap" rel="stylesheet">
+
   <style>
+    /* =========================
+       COLOR SYSTEM (EDIT HERE)
+       ========================= */
     :root {
-      --bg: #000;
-      --fg: #fff;
-      --muted: #bdbdbd;
-      --accent: #fff; /* still white – sakura is shape, not color */
+      --bg: #000000;
+      --fg: #ffffff;
+      --muted: #c7c7c7;
+
+      /* Accent colors */
+      --pink: #f4b6c2;
+      --purple: #c3b1e1;
     }
 
+    /* =========================
+       GLOBAL RESET
+       ========================= */
     * {
       margin: 0;
       padding: 0;
@@ -23,7 +36,7 @@
     }
 
     body {
-      font-family: "Inter", system-ui, sans-serif;
+      font-family: 'Orbitron', system-ui, sans-serif;
       background: var(--bg);
       color: var(--fg);
       line-height: 1.6;
@@ -34,27 +47,39 @@
       color: var(--fg);
       text-decoration: none;
       border-bottom: 1px solid transparent;
-      transition: border 0.3s ease, opacity 0.3s ease;
+      transition: opacity 0.3s ease, border 0.3s ease;
     }
 
     a:hover {
-      border-bottom: 1px solid var(--fg);
       opacity: 0.8;
+      border-bottom: 1px solid var(--pink);
     }
 
-    /* =====================
-       CHERRY BLOSSOM ANIMATION
-       (BLACK & WHITE)
-       ===================== */
+    /* =========================
+       OPTIONAL BACKGROUND IMAGE
+       Replace image later if you want
+       ========================= */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("images/background.jpg") center / cover no-repeat;
+      opacity: 0.08; /* keep subtle */
+      z-index: -2;
+    }
+
+    /* =========================
+       SAKURA PETALS
+       Only colors are changed
+       ========================= */
     .sakura {
       position: fixed;
       top: -10vh;
       width: 8px;
       height: 8px;
-      background: white;
       border-radius: 50% 50% 50% 0;
       transform: rotate(45deg);
-      opacity: 0.8;
+      opacity: 0.9;
       animation: fall linear infinite;
       pointer-events: none;
       z-index: 0;
@@ -69,9 +94,9 @@
       }
     }
 
-    /* =====================
-       LAYOUT
-       ===================== */
+    /* =========================
+       HERO SECTION
+       ========================= */
     header {
       min-height: 100vh;
       display: flex;
@@ -79,9 +104,9 @@
       justify-content: center;
       align-items: center;
       text-align: center;
+      padding: 2rem;
       position: relative;
       z-index: 1;
-      padding: 2rem;
     }
 
     header h1 {
@@ -91,10 +116,37 @@
     }
 
     header p {
-      color: var(--muted);
       max-width: 600px;
+      color: var(--muted);
     }
 
+    /* =========================
+       PROFILE IMAGE BLOCK
+       ========================= */
+    .profile {
+      margin-top: 2rem;
+      text-align: center;
+    }
+
+    .profile img {
+      width: 120px;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 2px solid var(--pink);
+    }
+
+    .profile span {
+      display: block;
+      margin-top: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      font-style: italic;
+    }
+
+    /* =========================
+       SECTIONS
+       ========================= */
     section {
       padding: 6rem 10vw;
       position: relative;
@@ -105,19 +157,20 @@
       font-size: 2rem;
       margin-bottom: 2rem;
       letter-spacing: 0.1em;
+      color: var(--pink);
     }
 
-    /* =====================
+    /* =========================
        ABOUT
-       ===================== */
+       ========================= */
     .about p {
       max-width: 700px;
       color: var(--muted);
     }
 
-    /* =====================
-       VIDEOS
-       ===================== */
+    /* =========================
+       VIDEOS (CARDS)
+       ========================= */
     .videos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -125,55 +178,50 @@
     }
 
     .video-card {
-      border: 1px solid var(--fg);
+      border: 1px solid var(--purple);
       padding: 1.5rem;
-      transition: transform 0.3s ease, background 0.3s ease;
+      background: rgba(255,255,255,0.03);
+      transition: transform 0.3s ease;
     }
 
     .video-card:hover {
       transform: translateY(-6px);
-      background: #111;
-    }
-
-    .video-card h3 {
-      margin-bottom: 0.5rem;
     }
 
     .video-card p {
-      font-size: 0.9rem;
       color: var(--muted);
+      font-size: 0.9rem;
     }
 
-    /* =====================
+    /* =========================
        LINKS
-       ===================== */
+       ========================= */
     .links {
       display: flex;
-      flex-wrap: wrap;
       gap: 2rem;
+      flex-wrap: wrap;
     }
 
     .links a {
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       letter-spacing: 0.1em;
+      color: var(--purple);
     }
 
-    /* =====================
+    /* =========================
        FOOTER
-       ===================== */
+       ========================= */
     footer {
-      padding: 3rem;
       text-align: center;
-      font-size: 0.9rem;
+      padding: 3rem;
+      font-size: 0.85rem;
       color: var(--muted);
       border-top: 1px solid #222;
-      position: relative;
-      z-index: 1;
     }
 
-    /* =====================
+    /* =========================
        RESPONSIVE
-       ===================== */
+       ========================= */
     @media (max-width: 768px) {
       section {
         padding: 4rem 2rem;
@@ -181,84 +229,89 @@
     }
   </style>
 </head>
+
 <body>
 
-  <!-- =====================
-       SAKURA PETALS (JS GENERATED)
-       ===================== -->
+  <!-- =========================
+       SAKURA PETAL GENERATOR
+       ========================= -->
   <script>
     const petalCount = 30;
+    const colors = ["#ffffff", "#f4b6c2", "#e8dff5"];
+
     for (let i = 0; i < petalCount; i++) {
       const petal = document.createElement("div");
       petal.className = "sakura";
       petal.style.left = Math.random() * 100 + "vw";
-      petal.style.animationDuration = 5 + Math.random() * 10 + "s";
-      petal.style.opacity = Math.random();
+      petal.style.animationDuration = 6 + Math.random() * 10 + "s";
+      petal.style.background = colors[Math.floor(Math.random() * colors.length)];
       petal.style.transform = `scale(${0.5 + Math.random()}) rotate(45deg)`;
       document.body.appendChild(petal);
     }
   </script>
 
-  <!-- =====================
+  <!-- =========================
        HERO
-       ===================== -->
+       ========================= -->
   <header>
     <h1>HYEKEY</h1>
-    <p>
-      GeoGuessr player • YouTuber • Explorer of digital geography
-    </p>
+    <p>GeoGuessr player • YouTuber • Explorer of digital geography</p>
+
+    <!-- PROFILE IMAGE -->
+    <div class="profile">
+      <img src="images/profile.jpg" alt="Hyekey profile picture">
+      <span>definitely not an AI picture</span>
+    </div>
   </header>
 
-  <!-- =====================
+  <!-- =========================
        ABOUT
-       ===================== -->
+       ========================= -->
   <section class="about">
     <h2>ABOUT</h2>
     <p>
       I create GeoGuessr content focused on map knowledge, pattern recognition,
-      and calm, focused gameplay. This site is my minimal, distraction‑free hub
-      for everything I make.
+      and calm, focused gameplay. This site is my minimal hub for everything I make.
     </p>
   </section>
 
-  <!-- =====================
+  <!-- =========================
        VIDEOS
-       ===================== -->
+       ========================= -->
   <section>
-    <h2>FEATURED VIDEOS</h2>
+    <h2>FEATURED CONTENT</h2>
     <div class="videos">
       <div class="video-card">
-        <h3>GeoGuessr Challenge Runs</h3>
-        <p>High‑focus competitive gameplay and map analysis.</p>
+        <h3>Challenge Runs</h3>
+        <p>Competitive GeoGuessr gameplay.</p>
       </div>
       <div class="video-card">
         <h3>Learning Geography</h3>
-        <p>Road lines, poles, signs, and region deduction.</p>
+        <p>Region deduction and pattern recognition.</p>
       </div>
       <div class="video-card">
         <h3>Calm Sessions</h3>
-        <p>Relaxed, no‑commentary exploration gameplay.</p>
+        <p>Relaxed exploration gameplay.</p>
       </div>
     </div>
   </section>
 
-  <!-- =====================
+  <!-- =========================
        LINKS
-       ===================== -->
+       ========================= -->
   <section>
     <h2>CONNECT</h2>
     <div class="links">
       <a href="https://www.youtube.com/@hyekey" target="_blank">YOUTUBE</a>
-      <a href="https://bsky.app" target="_blank">BLUESKY</a>
-      <a href="https://github.com/Hyekey" target="_blank">GITHUB</a>
+      <a href="https://www.instagram.com/" target="_blank">INSTAGRAM</a>
     </div>
   </section>
 
-  <!-- =====================
+  <!-- =========================
        FOOTER
-       ===================== -->
+       ========================= -->
   <footer>
-    © 2026 Hyekey · Black & White Sakura Theme
+    © 2026 Hyekey · Sakura Monochrome Theme
   </footer>
 
 </body>
