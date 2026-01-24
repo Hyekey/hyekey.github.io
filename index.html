@@ -6,30 +6,24 @@
   <title>Hyekey | GeoGuessr Creator</title>
 
   <!-- =========================
-       GOOGLE FONT (FUTURISTIC / CLEAN)
+       GOOGLE FONT (CLEAN / PREMIUM)
        ========================= -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 
-
   <style>
     /* =========================
-       COLOR SYSTEM (EDIT HERE)
+       COLOR SYSTEM
        ========================= */
     :root {
       --bg: #000000;
       --fg: #ffffff;
       --muted: #c7c7c7;
-
-      /* Accent colors */
       --pink: #f4b6c2;
       --purple: #c3b1e1;
     }
 
-    /* =========================
-       GLOBAL RESET
-       ========================= */
     * {
       margin: 0;
       padding: 0;
@@ -37,11 +31,20 @@
     }
 
     body {
-      font-family: 'Orbitron', system-ui, sans-serif;
+      font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       background: var(--bg);
       color: var(--fg);
       line-height: 1.6;
       overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: url("images/background.jpg") center / cover no-repeat;
+      opacity: 0.08;
+      z-index: -2;
     }
 
     a {
@@ -57,21 +60,7 @@
     }
 
     /* =========================
-       OPTIONAL BACKGROUND IMAGE
-       Replace image later if you want
-       ========================= */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: url("images/background.jpg") center / cover no-repeat;
-      opacity: 0.08; /* keep subtle */
-      z-index: -2;
-    }
-
-    /* =========================
        SAKURA PETALS
-       Only colors are changed
        ========================= */
     .sakura {
       position: fixed;
@@ -87,17 +76,10 @@
     }
 
     @keyframes fall {
-      0% {
-        transform: translateY(-10vh) rotate(45deg);
-      }
-      100% {
-        transform: translateY(110vh) rotate(405deg);
-      }
+      0% { transform: translateY(-10vh) rotate(45deg); }
+      100% { transform: translateY(110vh) rotate(405deg); }
     }
 
-    /* =========================
-       HERO SECTION
-       ========================= */
     header {
       min-height: 100vh;
       display: flex;
@@ -121,9 +103,6 @@
       color: var(--muted);
     }
 
-    /* =========================
-       PROFILE IMAGE BLOCK
-       ========================= */
     .profile {
       margin-top: 2rem;
       text-align: center;
@@ -145,9 +124,6 @@
       font-style: italic;
     }
 
-    /* =========================
-       SECTIONS
-       ========================= */
     section {
       padding: 6rem 10vw;
       position: relative;
@@ -161,17 +137,12 @@
       color: var(--pink);
     }
 
-    /* =========================
-       ABOUT
-       ========================= */
     .about p {
       max-width: 700px;
       color: var(--muted);
+      margin-bottom: 1.2rem;
     }
 
-    /* =========================
-       VIDEOS (CARDS)
-       ========================= */
     .videos {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -189,14 +160,28 @@
       transform: translateY(-6px);
     }
 
+    .thumbnail {
+      width: calc(100% + 3rem);
+      margin-left: -1.5rem;
+      margin-right: -1.5rem;
+      aspect-ratio: 16 / 9;
+      overflow: hidden;
+      border-radius: 4px 4px 0 0;
+      margin-bottom: 1rem;
+    }
+
+    .thumbnail img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
     .video-card p {
       color: var(--muted);
       font-size: 0.9rem;
     }
 
-    /* =========================
-       LINKS
-       ========================= */
     .links {
       display: flex;
       gap: 2rem;
@@ -209,9 +194,6 @@
       color: var(--purple);
     }
 
-    /* =========================
-       FOOTER
-       ========================= */
     footer {
       text-align: center;
       padding: 3rem;
@@ -220,9 +202,6 @@
       border-top: 1px solid #222;
     }
 
-    /* =========================
-       RESPONSIVE
-       ========================= */
     @media (max-width: 768px) {
       section {
         padding: 4rem 2rem;
@@ -233,129 +212,113 @@
 
 <body>
 
-  <!-- =========================
-       SAKURA PETAL GENERATOR
-       ========================= -->
-  <script>
-    const petalCount = 30;
-    const colors = ["#ffffff", "#f4b6c2", "#e8dff5"];
+<script>
+  const petalCount = 30;
+  const colors = ["#ffffff", "#f4b6c2", "#e8dff5"];
 
-    for (let i = 0; i < petalCount; i++) {
-      const petal = document.createElement("div");
-      petal.className = "sakura";
-      petal.style.left = Math.random() * 100 + "vw";
-      petal.style.animationDuration = 6 + Math.random() * 10 + "s";
-      petal.style.background = colors[Math.floor(Math.random() * colors.length)];
-      petal.style.transform = `scale(${0.5 + Math.random()}) rotate(45deg)`;
-      document.body.appendChild(petal);
-    }
-  </script>
+  for (let i = 0; i < petalCount; i++) {
+    const petal = document.createElement("div");
+    petal.className = "sakura";
+    petal.style.left = Math.random() * 100 + "vw";
+    petal.style.animationDuration = 6 + Math.random() * 10 + "s";
+    petal.style.background = colors[Math.floor(Math.random() * colors.length)];
+    document.body.appendChild(petal);
+  }
+</script>
 
-  <!-- =========================
-       HERO
-       ========================= -->
-  <header>
-    <h1>HYEKEY</h1>
-    <p>GeoGuessr player • YouTuber • Explorer of digital geography</p>
+<header>
+  <h1>HYEKEY</h1>
+  <p>GeoGuessr player • YouTuber • Explorer of digital geography</p>
 
-    <!-- PROFILE IMAGE -->
-    <div class="profile">
-      <img src="images/profile.jpg" alt="Hyekey profile picture">
-      <span>definitely not an AI picture</span>
-    </div>
-  </header>
+  <div class="profile">
+    <img src="images/profile.png" alt="Hyekey profile picture">
+    <span>Definitely not AI — that’s me in Japan with Mount Fuji in the background</span>
+  </div>
+</header>
 
-  <!-- =========================
-       ABOUT
-       ========================= -->
-  <section class="about">
-    <h2>ABOUT</h2>
-    <p>
-      I create GeoGuessr content focused on map knowledge, pattern recognition,
-      and calm, focused gameplay. This site is my minimal hub for everything I make.
-    </p>
-  </section>
+<!-- =========================
+     ABOUT (UPDATED)
+     ========================= -->
+<section class="about">
+  <h2>ABOUT</h2>
 
-  <!-- =========================
-     FEATURED VIDEOS
-     Clickable YouTube thumbnails (16:9)
+  <p><strong>Hi, I’m Hyekey.</strong></p>
+
+  <p>
+    I’m a GeoGuessr content creator from Kerala, India, creating geography-focused
+    videos on YouTube. My content explores the world through map knowledge,
+    regional patterns, and location deduction, with a strong emphasis on
+    thoughtful gameplay and learning through exploration.
+  </p>
+
+  <p>
+    I primarily create GeoGuessr videos in Malayalam, making geography and
+    location-based games more accessible and enjoyable for viewers who prefer
+    regional language content. My videos range from competitive gameplay and
+    strategy-driven challenges to calm, exploratory sessions focused on specific
+    regions such as Kerala, India, and other interesting parts of the world.
+  </p>
+
+  <p>
+    This website serves as a central hub for my work — a place to showcase featured
+    videos, share my approach to GeoGuessr, and connect with viewers who enjoy
+    geography, maps, and location-based problem solving. I value respectful
+    discussion, curiosity, and genuine interest in geography, and I’m always open
+    to suggestions for future video ideas.
+  </p>
+
+  <p>
+    If you enjoy geography-related content, relaxed exploration, or competitive
+    GeoGuessr gameplay, you’re welcome to follow along and explore the world with me.
+  </p>
+</section>
+
+<!-- =========================
+     FEATURED CONTENT
      ========================= -->
 <section>
   <h2>FEATURED CONTENT</h2>
 
   <div class="videos">
 
-    <!-- VIDEO 1 -->
-    <a
-      class="video-card video-link"
-      href="https://www.youtube.com/watch?v=ySQbFG8T00M"
-      target="_blank"
-      rel="noopener"
-    >
+    <a class="video-card" href="https://www.youtube.com/watch?v=ySQbFG8T00M" target="_blank">
       <div class="thumbnail">
-        <img
-          src="https://img.youtube.com/vi/ySQbFG8T00M/default.jpg"
-          alt="GeoGuessr Challenge Run"
-        >
+        <img src="https://img.youtube.com/vi/ySQbFG8T00M/default.jpg">
       </div>
-      <h3>Challenge Runs</h3>
-      <p>Competitive GeoGuessr gameplay.</p>
+      <h3>How To Play Videos</h3>
+      <p>Beginner-friendly guides covering the core mechanics, controls, and strategies of GeoGuessr.</p>
     </a>
 
-    <!-- VIDEO 2 -->
-    <a
-      class="video-card video-link"
-      href="https://www.youtube.com/watch?v=uvl67b5dJbY"
-      target="_blank"
-      rel="noopener"
-    >
+    <a class="video-card" href="https://www.youtube.com/watch?v=uvl67b5dJbY" target="_blank">
       <div class="thumbnail">
-        <img
-          src="https://img.youtube.com/vi/uvl67b5dJbY/default.jpg"
-          alt="Learning Geography"
-        >
+        <img src="https://img.youtube.com/vi/uvl67b5dJbY/maxresdefault.jpg">
       </div>
-      <h3>Learning Geography</h3>
-      <p>Region deduction and pattern recognition.</p>
+      <h3>Competitive Gameplay Videos</h3>
+      <p>High-level GeoGuessr matches focused on accuracy, speed, and decision-making.</p>
     </a>
 
-    <!-- VIDEO 3 -->
-    <a
-      class="video-card video-link"
-      href="https://www.youtube.com/watch?v=n_JzaCGXtyc"
-      target="_blank"
-      rel="noopener"
-    >
+    <a class="video-card" href="https://www.youtube.com/watch?v=n_JzaCGXtyc" target="_blank">
       <div class="thumbnail">
-        <img
-          src="https://img.youtube.com/vi/n_JzaCGXtyc/default.jpg"
-          alt="Calm GeoGuessr Session"
-        >
+        <img src="https://img.youtube.com/vi/n_JzaCGXtyc/maxresdefault.jpg">
       </div>
-      <h3>Calm Sessions</h3>
-      <p>Relaxed exploration gameplay.</p>
+      <h3>Calm & Exploratory Sessions</h3>
+      <p>Relaxed GeoGuessr sessions focused on regional exploration, geography, and enjoyable gameplay.</p>
     </a>
 
   </div>
 </section>
 
-  <!-- =========================
-       LINKS
-       ========================= -->
-  <section>
-    <h2>CONNECT</h2>
-    <div class="links">
-      <a href="https://www.youtube.com/@hyekeyy" target="_blank">YOUTUBE</a>
-      <a href="https://www.instagram.com/hyekeyy" target="_blank">INSTAGRAM</a>
-    </div>
-  </section>
+<section>
+  <h2>CONNECT</h2>
+  <div class="links">
+    <a href="https://www.youtube.com/@hyekeyy" target="_blank">YOUTUBE</a>
+    <a href="https://www.instagram.com/hyekeyy" target="_blank">INSTAGRAM</a>
+  </div>
+</section>
 
-  <!-- =========================
-       FOOTER
-       ========================= -->
-  <footer>
-    © 2026 Hyekey · Sakura Monochrome Theme
-  </footer>
+<footer>
+  © 2026 Hyekey
+</footer>
 
 </body>
 </html>
